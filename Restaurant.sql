@@ -135,14 +135,23 @@ group by customers.customer_name, customers.customer_phone_number;
 -- Q5
 
 select customers.customer_name, 
-	   orders.order_number,
-	   orders.order_date, 
+	   orders.order_date,
 	   sum(pizza.price) as total_spending from customers 
 join customer_order on customers.customer_id = customer_order.customer_id
-left join orders on customer_order.order_number = orders.order_number
+join orders on customer_order.order_number = orders.order_number
 join order_pizza on orders.order_number = order_pizza.order_number
 join pizza on order_pizza.pizza_id = pizza.pizza_id
-group by customers.customer_name, orders.order_number, orders.order_date;
+group by customers.customer_name, orders.order_date, customers.customer_phone_number;
+
+-- select customers.customer_name, 
+-- 	   orders.order_number,
+-- 	   orders.order_date, 
+-- 	   sum(pizza.price) as total_spending from customers 
+-- join customer_order on customers.customer_id = customer_order.customer_id
+-- join orders on customer_order.order_number = orders.order_number
+-- join order_pizza on orders.order_number = order_pizza.order_number
+-- join pizza on order_pizza.pizza_id = pizza.pizza_id
+-- group by customers.customer_name, orders.order_number, orders.order_date;
 
 -- Had trouble with this one, i was able to add the date and time but i wasnt
 -- able to separate sum by order versus sum by person. I realized that i wasnt 
