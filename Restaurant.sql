@@ -135,7 +135,7 @@ group by customers.customer_name, customers.customer_phone_number;
 -- Q5
 
 select customers.customer_name, 
-	   orders.order_date,
+	   cast(orders.order_date AS DATE) as order_date,
 	   sum(pizza.price) as total_spending from customers 
 join customer_order on customers.customer_id = customer_order.customer_id
 join orders on customer_order.order_number = orders.order_number
